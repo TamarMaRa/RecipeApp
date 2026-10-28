@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import ErrorMessage from "../UI/ErrorMessage";
 import "./RecipeImage.css";
+import downloadIcon from "../../assets/upload-icon.jpg";
 
 const RecipeImage = () => {
   const fileInputRef = useRef(null);
@@ -56,7 +57,7 @@ const RecipeImage = () => {
   };
 
   return (
-    <div>
+    <div className="dropzone-container">
       {error && (
         <ErrorMessage
           title={error.title}
@@ -73,8 +74,13 @@ const RecipeImage = () => {
         onDrop={handleDrop}
         className="image-container"
       >
-        {!file && <p>Upload image</p>}
-        {file && <img src={file} alt="uploaded-image" />}
+        {!file && (
+          <div>
+            <p>Upload image</p>
+            <img src={downloadIcon} alt="upload-icon" className="upload-icon"/>
+          </div>
+        )}
+        {file && <img src={file} alt="uploaded-image" className="image-container-file"/>}
       </div>
       <input
         ref={fileInputRef}

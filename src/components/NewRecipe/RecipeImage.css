@@ -1,16 +1,30 @@
 
+.dropzone-container {
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  border-top: 1px solid black;  
+  border-bottom: 1px solid black;
+}
 .image-container {
     width: 13vw;  
     height: 20vh; 
-    border: 1px solid black;
+    border: 3px dotted black;
     border-radius: 10px;
     margin: auto;
     margin-bottom: 5vh;
+    background-color: #BC8AB0;
+    cursor: pointer;
 }
 
-.image-container img {
+.image-container-file {
   width: 100%;
   height: 100%;
   object-fit: fill;
   border-radius: 10px;
+}
+
+.upload-icon{
+  width: 5vh;
+  height: 3vw;
+  margin-top: 1vh;
 }
