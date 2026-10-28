@@ -1,16 +1,34 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ErrorMessage from "../UI/ErrorMessage";
 import "./RecipeImage.css";
 
 const RecipeImage = () => {
+  const fileInputRef = useRef(null);
   const [file, setFile] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleImageChange = (event) => {
-    const image = event.target.files[0];
-    setFile(URL.createObjectURL(image));
-    console.log(event.target);
+  const handleImageChange = (file) => {
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      setError({
+        title: "Invalid input",
+        message: "File must be a single image",
+      });
+      return;
+    }
+
+    setFile(URL.createObjectURL(file));
+  };
+
+  const handleClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleChange = (event) => {
+    handleImageChange(event.target.files[0]);
+    event.target.value = "";
   };
 
   const handleDragOver = (event) => {
@@ -26,21 +44,15 @@ const RecipeImage = () => {
   const handleDrop = (event) => {
     event.preventDefault();
     setIsDragging(false);
-    const file = event.dataTransfer.files[0];
-    if (!file.type.startsWith("image/")) {
-      setError({
-        title: "Invalid input",
-        message: "File must be an image",
-      });
-      console.log(error);
-      return;
-    }
-
-    setFile(URL.createObjectURL(file));
+    handleImageChange(event.dataTransfer.files[0]);
   };
 
   const errorHandler = () => {
     setError(null);
+  };
+
+  const deleteImageHandler = () => {
+    setFile(null);
   };
 
   return (
@@ -53,24 +65,25 @@ const RecipeImage = () => {
         />
       )}
 
-      <p>Drag and drop image here</p>
-
       <div
         dropzone="copy"
+        onClick={handleClick}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         className="image-container"
       >
+        {!file && <p>Upload image</p>}
         {file && <img src={file} alt="uploaded-image" />}
       </div>
       <input
-        id="input-file"
+        ref={fileInputRef}
         type="file"
         accept="image/*"
-        onChange={handleImageChange}
+        onChange={handleChange}
+        style={{ display: "none" }}
       />
-      <label htmlFor="input-file">Choose File</label>
+      <button onClick={deleteImageHandler}>Remove Image</button>
     </div>
   );
 };
