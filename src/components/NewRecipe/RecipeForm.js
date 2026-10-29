@@ -5,7 +5,9 @@ import RecipeInfo from "./RecipeInfo";
 
 const RecipeForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredIngredient, setEnteredIngredient] = useState([]);
+  const [enteredIngredient, setEnteredIngredient] = useState([
+    { id: 1, value: "" },
+  ]);
   const [enteredInstruction, setEnteredInstruction] = useState([]);
 
   const titleChangeHandler = (event) => {
@@ -24,37 +26,39 @@ const RecipeForm = (props) => {
 
     const recipeData = {
       title: enteredTitle,
-      ingredient: enteredIngredient,
-      instruction: enteredInstruction,
+      ingredients: enteredIngredient,
+      instructions: enteredInstruction,
     };
 
     props.onSaveRecipeData(recipeData);
     setEnteredTitle("");
-    setEnteredIngredient("");
+    setEnteredIngredient([{ id: 1, value: "" }]);
     setEnteredInstruction("");
   };
 
   return (
-      <form onSubmit={submitHandler}>
-        <h2> Add A New Recipe</h2>
-        <input
-          id="input-title"
-          placeholder="Add recipe title"
-          className="input-title"
-          onChange={titleChangeHandler}
-        />
-        <RecipeImage />
-        <RecipeInfo
-          onIngredientChange={ingredientChangeHandler}
-          onInstructionhange={instructionChangeHandler}
-        />
-        <div>
-          <button type="button" onClick={props.onCancel}>
-            Delete
-          </button>
-          <button type="submit">Add Recipe</button>
-        </div>
-      </form>
+    <form onSubmit={submitHandler}>
+      <h2> Add A New Recipe</h2>
+      <input
+        id="input-title"
+        placeholder="Add recipe title"
+        className="input-title"
+        onChange={titleChangeHandler}
+      />
+      <RecipeImage />
+      <RecipeInfo
+        ingredients={enteredIngredient}
+        setIngredient={setEnteredIngredient}
+        onIngredientChange={ingredientChangeHandler}
+        onInstructionhange={instructionChangeHandler}
+      />
+      <div>
+        <button type="button" onClick={props.onCancel}>
+          Delete
+        </button>
+        <button type="submit">Add Recipe</button>
+      </div>
+    </form>
   );
 };
 

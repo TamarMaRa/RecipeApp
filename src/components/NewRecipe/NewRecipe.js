@@ -8,7 +8,6 @@ const NewRecipe = (props) => {
       id: Math.random().toString(),
     };
     props.onAddRecipe(recipeData);
-    console.log(recipeData);
   };
 
   const deleteFormHandler = () => {
