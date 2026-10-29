@@ -1,25 +1,26 @@
+import RecipeForm from "./RecipeForm";
 import "./NewRecipe.css";
-import RecipeImage from "./RecipeImage";
-import RecipeInfo from "./RecipeInfo"
 
 const NewRecipe = (props) => {
-  const saveRecipe = (enteredRecipeData) => {
+  const saveRecipeDataHandler = (enteredRecipeData) => {
     const recipeData = {
       ...enteredRecipeData,
       id: Math.random().toString(),
     };
-    // props.onAddRecipe(recipeData);
+    props.onAddRecipe(recipeData);
+    console.log(recipeData);
   };
+
+  const deleteFormHandler = () => {
+    //find a way to clear all fields
+  }
 
   return (
     <div className="sidebar">
-      <h2> Add A New Recipe</h2>
-      <input id="input-title" placeholder="Add recipe title" className="input-title"/>
-      <RecipeImage />
-      <RecipeInfo/>
-      <button type="submit" onClick={saveRecipe}>
-        Add Recipe
-      </button>
+      <RecipeForm
+        onSaveRecipeData={saveRecipeDataHandler}
+        onCancel={deleteFormHandler}
+      />
     </div>
   );
 };
