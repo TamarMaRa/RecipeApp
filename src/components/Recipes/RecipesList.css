@@ -1,5 +1,8 @@
 .recipes-list {
-  list-style: none;
-  padding: 0;
-  list-style-type: upper-roman;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 65vw;
+  margin-left: 32vw;
+  list-style-type: none;
 }

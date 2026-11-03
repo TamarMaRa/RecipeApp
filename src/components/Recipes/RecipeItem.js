@@ -1,6 +1,7 @@
 import React from "react";
 
 import Card from "../UI/Card";
+import "./RecipeItem.css";
 
 const RecipeItem = (props) => {
   console.log(props.title);
@@ -11,19 +12,22 @@ const RecipeItem = (props) => {
           <h2 className="recipe-item-title">{props.title}</h2>
 
           <div className="recipe-card-content">
-            <h4>Ingredients</h4>
-            <ul>
-              {props.ingredient.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ul>
-
-            <h4>Instructions</h4>
-            <ol>
-              {props.instruction.map((step, index) => (
-                <li key={index}>{step}</li>
-              ))}
-            </ol>
+            <div className="recipe-card-content-item">
+              <h4>Ingredients</h4>
+              <ul>
+                {props.ingredient.map((ingredient, index) => (
+                  <li key={index}>{ingredient}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4>Instructions</h4>
+              <ol>
+                {props.instruction.map((step, index) => (
+                  <li key={index}>{step}</li>
+                ))}
+              </ol>
+            </div>
           </div>
         </div>
       </Card>

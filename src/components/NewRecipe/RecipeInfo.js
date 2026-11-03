@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 
+import './RecipeInfo.css'
+
 const RecipeInfo = ({ title, placeholder, onChange }) => {
   const nextId = useRef(2);
   const [items, setItems] = useState([{ id: 1, value: "" }]);

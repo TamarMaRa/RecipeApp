@@ -1,6 +1,7 @@
 import React from 'react';
 
 import RecipeItem from './RecipeItem';
+import './RecipesList.css'
 
 const RecipesList = ({recipes}) => {
 
