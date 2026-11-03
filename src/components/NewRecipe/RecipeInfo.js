@@ -1,65 +1,54 @@
-import { useRef } from "react";
-import "./RecipeInfo.css";
+import { useState, useRef } from "react";
 
-const RecipeInfo = (props) => {
+const RecipeInfo = ({ title, placeholder, onChange }) => {
   const nextId = useRef(2);
-  //   const [instructions, setInstructions] = useState([]);
+  const [items, setItems] = useState([{ id: 1, value: "" }]);
 
-  const handleIngredientChange = (id, value) => {
-    props.setIngredient((prev) => {
-      const index = prev.findIndex((ingredient) => ingredient.id === id);
+  const handleChange = (id, value) => {
+    const index = items.findIndex((item) => item.id === id);
 
-      if (value === "" && index !== prev.length - 1) {
-        return prev.filter((ingredient) => ingredient.id !== id);
-      }
+    let updated;
 
-      let updated = prev.map((ingredient) =>
-        ingredient.id === id ? { ...ingredient, value } : ingredient,
+    if (value === "" && index !== items.length - 1) {
+      return items.filter((item) => item.id !== id);
+    } else {
+      updated = items.map((item) =>
+        item.id === id ? { ...item, value } : item,
       );
 
-      const lastIngredient = updated[updated.length - 1];
-      if (lastIngredient.value.trim() !== "") {
+      const lastitem = updated[updated.length - 1];
+      if (lastitem.value.trim() !== "") {
         updated.push({
           id: nextId.current++,
           value: "",
         });
       }
-      return updated;
-    });
+    }
+
+    setItems(updated);
+
+    onChange(
+      updated
+        .filter((item) => item.value.trim() !== "")
+        .map((item) => item.value.trim()),
+    );
+    return updated;
   };
 
   return (
-    <div className="recipe-info-container">
-      <div id="ingredients">
-        <h3>ingredients list</h3>
-        {props.ingredients.map((ingredient, index) => (
+    <div className="input-list-container">
+      <div>
+        <h3>{title}</h3>
+        {items.map((item, index) => (
           <input
-            key={ingredient.id}
+            key={item.id}
             type="text"
-            placeholder={`Ingredient ${index + 1}`}
-            value={ingredient.value}
-            className="input-ingredient"
-            onChange={(event) =>
-              handleIngredientChange(ingredient.id, event.target.value)
-            }
+            placeholder={`${placeholder} ${index + 1}`}
+            value={item.value}
+            onChange={(event) => handleChange(item.id, event.target.value)}
           />
         ))}
       </div>
-      {/* <div id="instructions">
-        <h3>instructions list</h3>
-        {props.instructions.map((instructions, index) => (
-          <input
-            key={instructions.id}
-            type="text"
-            placeholder={`Instruction ${index + 1}`}
-            value={instructions.value}
-            className="input-instruction"
-            onChange={(event) =>
-              handleIngredientChange(instructions.id, event.target.value)
-            }
-          />
-        ))}
-      </div> */}
     </div>
   );
 };

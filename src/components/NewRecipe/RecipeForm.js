@@ -4,36 +4,31 @@ import RecipeImage from "./RecipeImage";
 import RecipeInfo from "./RecipeInfo";
 
 const RecipeForm = (props) => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredIngredient, setEnteredIngredient] = useState([
-    { id: 1, value: "" },
-  ]);
-  const [enteredInstruction, setEnteredInstruction] = useState([]);
+  const [title, setTitle] = useState("");
+  const [ingredient, setIngredient] = useState([]);
+  const [instruction, setInstruction] = useState([]);
 
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
-  };
-
-  const ingredientChangeHandler = (event) => {
-    setEnteredIngredient(event.target.value);
-  };
-  const instructionChangeHandler = (event) => {
-    setEnteredInstruction(event.target.value);
+    setTitle(event.target.value);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     const recipeData = {
-      title: enteredTitle,
-      ingredients: enteredIngredient,
-      instructions: enteredInstruction,
+      title: title,
+      ingredients: ingredient,
+      instructions: instruction,
     };
 
     props.onSaveRecipeData(recipeData);
-    setEnteredTitle("");
-    setEnteredIngredient([{ id: 1, value: "" }]);
-    setEnteredInstruction("");
+        console.log(recipeData);
+
+    setTitle("");
+    setIngredient("");
+    setInstruction("");
+    console.log(recipeData);
+
   };
 
   return (
@@ -46,11 +41,17 @@ const RecipeForm = (props) => {
         onChange={titleChangeHandler}
       />
       <RecipeImage />
+
       <RecipeInfo
-        ingredients={enteredIngredient}
-        setIngredient={setEnteredIngredient}
-        onIngredientChange={ingredientChangeHandler}
-        onInstructionhange={instructionChangeHandler}
+        title="Ingredients"
+        placeholder="Ingredient"
+        onChange={setIngredient}
+      />
+
+      <RecipeInfo
+        title="Instruction"
+        placeholder="Step"
+        onChange={setInstruction}
       />
       <div>
         <button type="button" onClick={props.onCancel}>
