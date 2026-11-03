@@ -12,10 +12,3 @@ body {
   margin: 0;
   background-color: #D7C1C5;
 }
-.sm {
-  position: absolute;
-  left: 50vw;
-  height: 40vh;
-  width: 30vw;
-    background-color: #EBE8ED;
-}

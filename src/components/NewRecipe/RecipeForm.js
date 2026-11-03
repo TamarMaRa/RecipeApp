@@ -16,19 +16,17 @@ const RecipeForm = (props) => {
     event.preventDefault();
 
     const recipeData = {
-      title: title,
+      title,
       ingredients: ingredient,
       instructions: instruction,
     };
 
     props.onSaveRecipeData(recipeData);
-        console.log(recipeData);
-
-    setTitle("");
-    setIngredient("");
-    setInstruction("");
     console.log(recipeData);
-
+    
+    setTitle("");
+    setIngredient([]);
+    setInstruction([]);
   };
 
   return (

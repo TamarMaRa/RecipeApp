@@ -1,13 +1,20 @@
 import { useState } from "react";
 import "./index.css";
 import NewRecipe from "./components/NewRecipe/NewRecipe";
+import RecipesList from "./components/Recipes/RecipesList";
 
 const DUMMY_RECIPES = [
   {
     id: "r1",
     title: "cookies",
-    ingredient: [1,2,3],
-    instruction: [1,2,3],
+    ingredients: [1, 2, 3],
+    instructions: [1, 2, 3],
+  },
+  {
+    id: "r2",
+    title: "cake",
+    ingredients: [4, 5, 6],
+    instructions: [4, 5, 6],
   },
 ];
 
@@ -23,7 +30,7 @@ const App = () => {
   return (
     <div>
       <NewRecipe onAddRecipe={addRecipeHandler} />
-      <div className="sm">recipe</div>
+      <RecipesList recipes={recipes} />
     </div>
   );
 };
