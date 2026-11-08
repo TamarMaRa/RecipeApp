@@ -19,6 +19,7 @@ const RecipeForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
     if (title === "") {
       setError({
         title: "Empty input field",
@@ -54,7 +55,7 @@ const RecipeForm = (props) => {
   const errorHandler = () => {
     setError(null);
   };
-  
+
   return (
     <div>
       {error && (
@@ -68,7 +69,6 @@ const RecipeForm = (props) => {
       <form onSubmit={submitHandler}>
         <h2>Add A New Recipe</h2>
         <input
-          id="input-title"
           placeholder="Add recipe title"
           className="input-title"
           maxLength="25"
