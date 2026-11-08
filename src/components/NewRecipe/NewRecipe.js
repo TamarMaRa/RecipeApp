@@ -10,15 +10,10 @@ const NewRecipe = (props) => {
     props.onAddRecipe(recipeData);
   };
 
-  const deleteFormHandler = () => {
-    //find a way to clear all fields
-  }
-
   return (
     <div className="sidebar">
       <RecipeForm
         onSaveRecipeData={saveRecipeDataHandler}
-        onCancel={deleteFormHandler}
       />
     </div>
   );

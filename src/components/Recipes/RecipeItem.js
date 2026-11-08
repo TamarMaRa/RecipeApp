@@ -4,7 +4,6 @@ import Card from "../UI/Card";
 import "./RecipeItem.css";
 
 const RecipeItem = (props) => {
-  console.log(props.title);
   return (
     <li>
       <Card className="recipe-item">

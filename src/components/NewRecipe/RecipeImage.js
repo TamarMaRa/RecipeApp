@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import ErrorMessage from "../UI/ErrorMessage";
 import "./RecipeImage.css";
 import downloadIcon from "../../assets/upload-icon.jpg";
+import Button from "../UI/Button";
 
 const RecipeImage = () => {
   const fileInputRef = useRef(null);
@@ -89,7 +90,7 @@ const RecipeImage = () => {
         onChange={handleChange}
         style={{ display: "none" }}
       />
-      <button onClick={deleteImageHandler}>Remove Image</button>
+      {file && <Button onClick={deleteImageHandler}>Remove Image</Button>}
     </div>
   );
 };
