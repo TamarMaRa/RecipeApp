@@ -1,12 +1,11 @@
 import { useState, useRef } from "react";
 import ErrorMessage from "../UI/ErrorMessage";
-import "./RecipeImage.css";
 import downloadIcon from "../../assets/upload-icon.jpg";
 import Button from "../UI/Button";
+import "./RecipeImage.css";
 
-const RecipeImage = () => {
+const RecipeImage = ({ file, setFile }) => {
   const fileInputRef = useRef(null);
-  const [file, setFile] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState(null);
 
@@ -78,10 +77,16 @@ const RecipeImage = () => {
         {!file && (
           <div>
             <p>Upload image</p>
-            <img src={downloadIcon} alt="upload-icon" className="upload-icon"/>
+            <img src={downloadIcon} alt="upload-icon" className="upload-icon" />
           </div>
         )}
-        {file && <img src={file} alt="uploaded-image" className="image-container-file"/>}
+        {file && (
+          <img
+            src={file}
+            alt="uploaded-image"
+            className="image-container-file"
+          />
+        )}
       </div>
       <input
         ref={fileInputRef}

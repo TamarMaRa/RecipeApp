@@ -1,5 +1,3 @@
-import React from "react";
-
 import Card from "../UI/Card";
 import "./RecipeItem.css";
 
@@ -9,7 +7,15 @@ const RecipeItem = (props) => {
       <Card className="recipe-item">
         <div>
           <h2 className="recipe-item-title">{props.title}</h2>
-
+          {props.src && (
+            <div className="recipe-item-image-container">
+              <img
+                src={props.src}
+                alt="recipe-image"
+                className="recipe-item-image"
+              />
+            </div>
+          )}
           <div className="recipe-card-content">
             <div className="recipe-card-content-item">
               <h4>Ingredients</h4>

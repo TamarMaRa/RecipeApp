@@ -12,9 +12,7 @@ const NewRecipe = (props) => {
 
   return (
     <div className="sidebar">
-      <RecipeForm
-        onSaveRecipeData={saveRecipeDataHandler}
-      />
+      <RecipeForm onSaveRecipeData={saveRecipeDataHandler} />
     </div>
   );
 };

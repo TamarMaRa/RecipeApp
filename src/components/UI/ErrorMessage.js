@@ -1,8 +1,6 @@
-import React from 'react';
-
-import Card from './Card';
-import Button from './Button';
-import './ErrorMessage.css'
+import Card from "./Card";
+import Button from "./Button";
+import "./ErrorMessage.css";
 
 const ErrorMessage = (props) => {
   return (

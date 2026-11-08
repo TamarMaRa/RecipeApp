@@ -1,13 +1,17 @@
 import { useState } from "react";
-import "./RecipeForm.css";
 import RecipeImage from "./RecipeImage";
 import RecipeInfo from "./RecipeInfo";
 import Button from "../UI/Button";
+import ErrorMessage from "../UI/ErrorMessage";
+import "./RecipeForm.css";
 
 const RecipeForm = (props) => {
   const [title, setTitle] = useState("");
-  const [ingredient, setIngredient] = useState([]);
-  const [instruction, setInstruction] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+  const [instructions, setInstructions] = useState([]);
+  const [src, setSrc] = useState(null);
+  const [error, setError] = useState(null);
+  const [formKey, setFormKey] = useState(0);
 
   const titleChangeHandler = (event) => {
     setTitle(event.target.value);
@@ -15,56 +19,90 @@ const RecipeForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    if (title === "") {
+      setError({
+        title: "Empty input field",
+        message: "Please fill out a title",
+      });
+      return;
+    }
+
+    if (ingredients.length === 0 || instructions.length === 0) {
+      setError({
+        title: "Empty input field",
+        message: "Recipe must have at least one ingredient and one instruction",
+      });
+      return;
+    }
 
     const recipeData = {
       title,
-      ingredients: ingredient,
-      instructions: instruction,
+      ingredients,
+      instructions,
+      src,
     };
 
     props.onSaveRecipeData(recipeData);
-    console.log(recipeData);
 
     setTitle("");
-    setIngredient([]);
-    setInstruction([]);
+    setIngredients([]);
+    setInstructions([]);
+    setSrc(null);
+    setFormKey((prev) => prev + 1);
   };
 
+  const errorHandler = () => {
+    setError(null);
+  };
+  
   return (
-    <form onSubmit={submitHandler}>
-      <h2> Add A New Recipe</h2>
-      <input
-        id="input-title"
-        placeholder="Add recipe title"
-        className="input-title"
-        maxLength="25"
-        onChange={titleChangeHandler}
-      />
-
-      <RecipeImage />
-
-      <div className="info-title-container">
-        <h3>Ingredients</h3>
-        <h3>Instruction</h3>
-      </div>
-
-      <div className="recipe-info-container">
-        <RecipeInfo
-          title="Ingredients"
-          placeholder="Ingredient"
-          onChange={setIngredient}
+    <div>
+      {error && (
+        <ErrorMessage
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
         />
-        <RecipeInfo
-          title="Instruction"
-          placeholder="Step"
-          onChange={setInstruction}
-        />
-      </div>
+      )}
 
-      <div className="submit-form">
-        <Button type="submit">Add Recipe</Button>
-      </div>
-    </form>
+      <form onSubmit={submitHandler}>
+        <h2>Add A New Recipe</h2>
+        <input
+          id="input-title"
+          placeholder="Add recipe title"
+          className="input-title"
+          maxLength="25"
+          value={title}
+          onChange={titleChangeHandler}
+        />
+
+        <RecipeImage file={src} setFile={setSrc} />
+
+        <div className="info-title-container">
+          <h3>Ingredients</h3>
+          <h3>Instructions</h3>
+        </div>
+
+        <div className="recipe-info-container">
+          <RecipeInfo
+            key={`Ingredient-${formKey}`}
+            title="Ingredients"
+            placeholder="Ingredient"
+            onChange={setIngredients}
+          />
+          <RecipeInfo
+            key={`Instruction-${formKey}`}
+            title="Instructions"
+            placeholder="Step"
+            onChange={setInstructions}
+          />
+        </div>
+
+        <div className="submit-form">
+          <Button type="submit">Add Recipe</Button>
+        </div>
+      </form>
+    </div>
   );
 };
 
