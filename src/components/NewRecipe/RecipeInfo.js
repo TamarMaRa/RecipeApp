@@ -1,0 +1,57 @@
+import { useState, useRef } from "react";
+
+import "./RecipeInfo.css";
+
+const RecipeInfo = ({ placeholder, onChange }) => {
+  const nextId = useRef(2);
+  const [items, setItems] = useState([{ id: 1, value: "" }]);
+  const handleChange = (id, value) => {
+    const index = items.findIndex((item) => item.id === id);
+
+    let updated;
+
+    if (value === "" && index !== items.length - 1) {
+      updated = items.filter((item) => item.id !== id);
+    } else {
+      updated = items.map((item) =>
+        item.id === id ? { ...item, value } : item,
+      );
+
+      const lastItem = updated[updated.length - 1];
+
+      if (lastItem.value.trim() !== "") {
+        updated.push({
+          id: nextId.current++,
+          value: "",
+        });
+      }
+    }
+
+    setItems(updated);
+
+    onChange(
+      updated
+        .filter((item) => item.value.trim() !== "")
+        .map((item) => item.value.trim()),
+    );
+  };
+
+  return (
+    <div className="input-list-container">
+      <div>
+        {items.map((item, index) => (
+          <input
+            key={item.id}
+            type="text"
+            placeholder={`${placeholder} ${index + 1}`}
+            value={item.value}
+            className="input-info"
+            onChange={(event) => handleChange(item.id, event.target.value)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default RecipeInfo;

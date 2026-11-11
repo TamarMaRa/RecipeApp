@@ -1,0 +1,10 @@
+.sidebar {
+  height: 95vh;
+  width: 30vw;
+  background-color: #9B598D;
+  text-align: center;
+  margin-left: 2vw;
+  border-radius: 10px;
+  overflow: auto;
+  position: fixed;
+}

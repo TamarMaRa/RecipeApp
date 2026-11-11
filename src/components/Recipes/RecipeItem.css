@@ -1,0 +1,35 @@
+.recipe-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.recipe-item-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #4b4b4b;
+  padding-bottom: 10px;
+}
+
+.recipe-card-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 18vw;
+}
+
+.recipe-card-content-item{
+  flex: 1 0 40%;
+}
+
+.recipe-item-image-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.recipe-item-image {
+  width: 13vw;
+  height: 20vh;
+}
