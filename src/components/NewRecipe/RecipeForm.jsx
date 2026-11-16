@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./RecipeForm.css";
 import RecipeImage from "./RecipeImage";
 import RecipeInfo from "./RecipeInfo";
 import Button from "../UI/Button";
 import ErrorMessage from "../UI/ErrorMessage";
+import RecipeContext from "../../store/recipe-Context ";
 
 const RecipeForm = (props) => {
+  const { addRecipe } = useContext(RecipeContext);
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState([]);
@@ -41,9 +43,10 @@ const RecipeForm = (props) => {
       ingredients,
       instructions,
       src,
+      id: crypto.randomUUID(),
     };
 
-    props.onSaveRecipeData(recipeData);
+    addRecipe(recipeData);
 
     setTitle("");
     setIngredients([]);
@@ -57,7 +60,7 @@ const RecipeForm = (props) => {
   };
 
   return (
-    <>
+    <div className="sidebar">
       {error && (
         <ErrorMessage
           title={error.title}
@@ -102,7 +105,7 @@ const RecipeForm = (props) => {
           <Button type="submit">Add Recipe</Button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

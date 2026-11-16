@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import RecipeItem from "./RecipeItem";
 import "./RecipesList.css";
+import RecipeContext from "../../store/recipe-Context ";
 
 const RecipesList = (props) => {
+  const recipeCtx = useContext(RecipeContext);
+
   return (
     <ul className="recipes-list">
-      {props.recipes.map((recipe) => (
+      {recipeCtx.recipes.map((recipe) => (
         <RecipeItem
           key={recipe.id}
           title={recipe.title}
