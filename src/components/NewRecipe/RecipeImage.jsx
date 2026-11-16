@@ -4,7 +4,7 @@ import ErrorMessage from "../UI/ErrorMessage";
 import downloadIcon from "../../assets/upload-icon.jpg";
 import Button from "../UI/Button";
 
-const RecipeImage = ({ file, setFile }) => {
+const RecipeImage = (props) => {
   const fileInputRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState(null);
@@ -20,7 +20,7 @@ const RecipeImage = ({ file, setFile }) => {
       return;
     }
 
-    setFile(URL.createObjectURL(file));
+    props.setFile(URL.createObjectURL(file));
   };
 
   const handleClick = () => {
@@ -53,7 +53,7 @@ const RecipeImage = ({ file, setFile }) => {
   };
 
   const deleteImageHandler = () => {
-    setFile(null);
+    props.setFile(null);
   };
 
   return (
@@ -74,15 +74,15 @@ const RecipeImage = ({ file, setFile }) => {
         onDrop={handleDrop}
         className="image-container"
       >
-        {!file && (
+        {!props.file && (
           <div>
             <p>Upload image</p>
             <img src={downloadIcon} alt="upload-icon" className="upload-icon" />
           </div>
         )}
-        {file && (
+        {props.file && (
           <img
-            src={file}
+            src={props.file}
             alt="uploaded-image"
             className="image-container-file"
           />
@@ -95,7 +95,7 @@ const RecipeImage = ({ file, setFile }) => {
         onChange={handleChange}
         style={{ display: "none" }}
       />
-      {file && <Button onClick={deleteImageHandler}>Remove Image</Button>}
+      {props.file && <Button onClick={deleteImageHandler}>Remove Image</Button>}
     </div>
   );
 };

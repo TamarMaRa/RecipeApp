@@ -5,7 +5,7 @@ const NewRecipe = (props) => {
   const saveRecipeDataHandler = (enteredRecipeData) => {
     const recipeData = {
       ...enteredRecipeData,
-      id: Math.random().toString(),
+      id: crypto.randomUUID(),
     };
     props.onAddRecipe(recipeData);
   };

@@ -1,15 +1,15 @@
 import RecipeItem from "./RecipeItem";
 import "./RecipesList.css";
 
-const RecipesList = ({ recipes }) => {
+const RecipesList = (props) => {
   return (
     <ul className="recipes-list">
-      {recipes.map((recipe) => (
+      {props.recipes.map((recipe) => (
         <RecipeItem
           key={recipe.id}
           title={recipe.title}
-          ingredient={recipe.ingredients}
-          instruction={recipe.instructions}
+          ingredients={recipe.ingredients}
+          instructions={recipe.instructions}
           src={recipe.src}
         />
       ))}

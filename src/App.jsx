@@ -35,10 +35,10 @@ const App = () => {
   };
 
   return (
-    <div>
+    <>
       <NewRecipe onAddRecipe={addRecipeHandler} />
       <RecipesList recipes={recipes} />
-    </div>
+    </>
   );
 };
 

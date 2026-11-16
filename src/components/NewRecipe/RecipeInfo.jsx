@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import "./RecipeInfo.css";
 
-const RecipeInfo = ({ placeholder, onChange }) => {
+const RecipeInfo = (props) => {
   const nextId = useRef(2);
   const [items, setItems] = useState([{ id: 1, value: "" }]);
   const handleChange = (id, value) => {
@@ -28,7 +28,7 @@ const RecipeInfo = ({ placeholder, onChange }) => {
 
     setItems(updated);
 
-    onChange(
+    props.onChange(
       updated
         .filter((item) => item.value.trim() !== "")
         .map((item) => item.value.trim()),
@@ -41,7 +41,7 @@ const RecipeInfo = ({ placeholder, onChange }) => {
         <input
           key={item.id}
           type="text"
-          placeholder={`${placeholder} ${index + 1}`}
+          placeholder={`${props.placeholder} ${index + 1}`}
           value={item.value}
           className="input-info"
           onChange={(event) => handleChange(item.id, event.target.value)}

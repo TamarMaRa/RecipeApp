@@ -20,7 +20,7 @@ const RecipeItem = (props) => {
             <div className="recipe-card-content-item">
               <h4>Ingredients</h4>
               <ul>
-                {props.ingredient.map((ingredient, index) => (
+                {props.ingredients.map((ingredient, index) => (
                   <li key={index}>{ingredient}</li>
                 ))}
               </ul>
@@ -28,7 +28,7 @@ const RecipeItem = (props) => {
             <div>
               <h4>Instructions</h4>
               <ol>
-                {props.instruction.map((step, index) => (
+                {props.instructions.map((step, index) => (
                   <li key={index}>{step}</li>
                 ))}
               </ol>
