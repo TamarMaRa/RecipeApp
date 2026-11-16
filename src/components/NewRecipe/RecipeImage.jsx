@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
+import "./RecipeImage.css";
 import ErrorMessage from "../UI/ErrorMessage";
 import downloadIcon from "../../assets/upload-icon.jpg";
 import Button from "../UI/Button";
-import "./RecipeImage.css";
 
 const RecipeImage = ({ file, setFile }) => {
   const fileInputRef = useRef(null);

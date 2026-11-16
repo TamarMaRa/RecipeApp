@@ -1,7 +1,6 @@
 import { useState } from "react";
 import NewRecipe from "./components/NewRecipe/NewRecipe";
 import RecipesList from "./components/Recipes/RecipesList";
-import "./index.css";
 
 const DUMMY_RECIPES = [
   {

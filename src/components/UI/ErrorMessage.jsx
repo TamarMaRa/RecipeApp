@@ -4,7 +4,7 @@ import "./ErrorMessage.css";
 
 const ErrorMessage = (props) => {
   return (
-    <div>
+    <>
       <div className="backdrop" onClick={props.onConfirm} />
       <Card className="modal">
         <header className="header">
@@ -17,7 +17,7 @@ const ErrorMessage = (props) => {
           <Button onClick={props.onConfirm}>Okay</Button>
         </footer>
       </Card>
-    </div>
+    </>
   );
 };
 

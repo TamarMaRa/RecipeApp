@@ -37,18 +37,16 @@ const RecipeInfo = ({ placeholder, onChange }) => {
 
   return (
     <div className="input-list-container">
-      <div>
-        {items.map((item, index) => (
-          <input
-            key={item.id}
-            type="text"
-            placeholder={`${placeholder} ${index + 1}`}
-            value={item.value}
-            className="input-info"
-            onChange={(event) => handleChange(item.id, event.target.value)}
-          />
-        ))}
-      </div>
+      {items.map((item, index) => (
+        <input
+          key={item.id}
+          type="text"
+          placeholder={`${placeholder} ${index + 1}`}
+          value={item.value}
+          className="input-info"
+          onChange={(event) => handleChange(item.id, event.target.value)}
+        />
+      ))}
     </div>
   );
 };

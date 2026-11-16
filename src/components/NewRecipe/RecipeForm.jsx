@@ -1,9 +1,9 @@
 import { useState } from "react";
+import "./RecipeForm.css";
 import RecipeImage from "./RecipeImage";
 import RecipeInfo from "./RecipeInfo";
 import Button from "../UI/Button";
 import ErrorMessage from "../UI/ErrorMessage";
-import "./RecipeForm.css";
 
 const RecipeForm = (props) => {
   const [title, setTitle] = useState("");
@@ -57,7 +57,7 @@ const RecipeForm = (props) => {
   };
 
   return (
-    <div>
+    <>
       {error && (
         <ErrorMessage
           title={error.title}
@@ -102,7 +102,7 @@ const RecipeForm = (props) => {
           <Button type="submit">Add Recipe</Button>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 
