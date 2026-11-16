@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-
 import "./RecipeInfo.css";
 
 const RecipeInfo = ({ placeholder, onChange }) => {
