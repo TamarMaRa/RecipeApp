@@ -72,15 +72,14 @@ const RecipeImage = (props) => {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className="image-container"
+        className={`image-container ${isDragging ? "dragging" : ""}`}
       >
-        {!props.file && (
+        {!props.file ? (
           <div>
             <p>Upload image</p>
             <img src={downloadIcon} alt="upload-icon" className="upload-icon" />
           </div>
-        )}
-        {props.file && (
+        ) : (
           <img
             src={props.file}
             alt="uploaded-image"

@@ -20,7 +20,7 @@ const RecipeForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    if (title === "") {
+    if (title.trim() === "") {
       setError({
         title: "Empty input field",
         message: "Please fill out a title",
