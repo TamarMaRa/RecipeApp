@@ -1,0 +1,38 @@
+.input-title {
+  height: 4vh;
+  width: 15vw;
+  margin-bottom: 5vh;
+  border: 2px solid white;
+  border-radius: 8px;
+}
+
+.info-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.recipe-info-container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.submit-form {
+  display: flex;
+  align-items: center;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  justify-content: space-around;
+}
+
+.sidebar {
+  height: 95vh;
+  width: 30vw;
+  background-color: #9B598D;
+  text-align: center;
+  margin-left: 2vw;
+  border-radius: 10px;
+  overflow: auto;
+  position: fixed;
+}
