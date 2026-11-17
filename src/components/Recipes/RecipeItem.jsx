@@ -1,7 +1,7 @@
 import Card from "../UI/Card";
 import "./RecipeItem.css";
 
-const RecipeItem = (props) => {  
+const RecipeItem = (props) => {
   return (
     <li>
       <Card className="recipe-item">
