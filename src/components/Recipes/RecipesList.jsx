@@ -3,7 +3,7 @@ import RecipeItem from "./RecipeItem";
 import "./RecipesList.css";
 import RecipeContext from "../../store/recipe-Context ";
 
-const RecipesList = (props) => {
+const RecipesList = () => {
   const recipeCtx = useContext(RecipeContext);
 
   return (

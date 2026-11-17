@@ -6,7 +6,7 @@ import Button from "../UI/Button";
 import ErrorMessage from "../UI/ErrorMessage";
 import RecipeContext from "../../store/recipe-Context ";
 
-const RecipeForm = (props) => {
+const RecipeForm = () => {
   const { addRecipe } = useContext(RecipeContext);
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState([]);
